@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
@@ -29,6 +30,7 @@ export default function Home() {
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <Button>Deploy now</Button>
           <Button variant="outline">Read our docs</Button>
+          <ModeToggle />
         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
