@@ -10,136 +10,92 @@ import {
   User,
   Settings,
   LogOut,
+  type LucideIcon,
 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
   SidebarHeader,
-  SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarRail,
 } from "@/components/ui/sidebar";
+import { Icons } from "./icons";
+import { siteConfig } from "@/config/site";
+import { NavSecondary } from "./nav-secondary";
+import { NavMain } from "./nav-main";
 
-const navigationItems = [
-  {
-    title: "Home",
-    icon: Home,
-    url: "#",
-    isActive: true,
-  },
-  {
-    title: "Course",
-    icon: BookOpen,
-    url: "#",
-    isActive: false,
-  },
-  {
-    title: "News",
-    icon: Newspaper,
-    url: "#",
-    isActive: false,
-  },
-  {
-    title: "Profile",
-    icon: User,
-    url: "#",
-    isActive: false,
-  },
-];
-
-const bottomItems = [
-  {
-    title: "Settings",
-    icon: Settings,
-    url: "#",
-  },
-  {
-    title: "Log Out",
-    icon: LogOut,
-    url: "#",
-    className: "text-red-600 hover:text-red-700 hover:bg-red-50",
-  },
-];
+const data = {
+  navMain: [
+    {
+      title: "Home",
+      url: "#",
+      icon: Home,
+      isActive: true,
+    },
+    {
+      title: "Course",
+      url: "#",
+      icon: BookOpen,
+    },
+    {
+      title: "News",
+      url: "#",
+      icon: Newspaper,
+    },
+    {
+      title: "Profile",
+      url: "#",
+      icon: User,
+    },
+  ],
+  navSecondary: [
+    {
+      title: "Settings",
+      url: "#",
+      icon: Settings,
+    },
+    {
+      title: "Log Out",
+      url: "#",
+      icon: LogOut,
+    },
+  ],
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { signOut } = useAuth();
 
-  const handleLogout = (e: React.MouseEvent) => {
-    e.preventDefault();
-    signOut();
+  const handleNavSecondaryClick = (item: {
+    title: string;
+    url: string;
+    icon: LucideIcon;
+  }) => {
+    if (item.title === "Log Out") {
+      signOut();
+    }
   };
 
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <div className="flex items-center space-x-2 px-2 py-2">
-          <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">B</span>
+        <SidebarMenuButton
+          size="lg"
+          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+        >
+          <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
+            <Icons.logo />
           </div>
-          <span className="text-xl font-bold text-gray-800 group-data-[collapsible=icon]:hidden">
-            BrightHer
-          </span>
-        </div>
+          <span className="truncate font-medium">{siteConfig.name}</span>
+        </SidebarMenuButton>
       </SidebarHeader>
 
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {navigationItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={item.isActive}
-                    tooltip={item.title}
-                  >
-                    <a href={item.url}>
-                      <item.icon className="w-4 h-4" />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <NavMain items={data.navMain} />
+        <NavSecondary
+          items={data.navSecondary}
+          onItemClick={handleNavSecondaryClick}
+          className="mt-auto"
+        />
       </SidebarContent>
-
-      <SidebarFooter>
-        <SidebarMenu>
-          {bottomItems.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              {item.title === "Log Out" ? (
-                <SidebarMenuButton
-                  tooltip={item.title}
-                  className={item.className}
-                  onClick={handleLogout}
-                >
-                  <item.icon className="w-4 h-4" />
-                  <span>{item.title}</span>
-                </SidebarMenuButton>
-              ) : (
-                <SidebarMenuButton
-                  asChild
-                  tooltip={item.title}
-                  className={item.className}
-                >
-                  <a href={item.url}>
-                    <item.icon className="w-4 h-4" />
-                    <span>{item.title}</span>
-                  </a>
-                </SidebarMenuButton>
-              )}
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
-      </SidebarFooter>
-
-      <SidebarRail />
     </Sidebar>
   );
 }
