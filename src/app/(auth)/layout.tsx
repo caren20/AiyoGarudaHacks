@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { Bell, Search, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -48,7 +49,18 @@ function AuthLayout({ children }: AuthLayoutProps) {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-lg">Loading...</div>
+        <div className="flex flex-col items-center">
+          <div className="w-40 h-40 bg-black rounded-full flex items-center justify-center mb-6">
+            <Image
+              src="/images/logo-loading.gif"
+              alt="Loading..."
+              width={96}
+              height={96}
+              unoptimized
+            />
+          </div>
+          <div className="text-lg text-gray-600">Loading...</div>
+        </div>
       </div>
     );
   }
