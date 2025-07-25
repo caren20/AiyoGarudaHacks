@@ -27,13 +27,13 @@ const data = {
   navMain: [
     {
       title: "Home",
-      url: "#",
+      url: "/home",
       icon: Home,
       isActive: true,
     },
     {
       title: "Course",
-      url: "#",
+      url: "/courses",
       icon: BookOpen,
     },
     {
