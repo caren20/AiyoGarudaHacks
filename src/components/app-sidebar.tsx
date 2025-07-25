@@ -8,7 +8,6 @@ import {
   BookOpen,
   Newspaper,
   User,
-  Settings,
   LogOut,
   type LucideIcon,
 } from "lucide-react";
@@ -48,11 +47,6 @@ const data = {
     },
   ],
   navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings,
-    },
     {
       title: "Log Out",
       url: "#",

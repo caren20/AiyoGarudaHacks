@@ -212,11 +212,13 @@ export default function Roadmap() {
               >
                 {/* Module Circle */}
                 <div className="relative group mb-2">
-                  <Button
-                    className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br ${module.gradient} text-white text-lg sm:text-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 cursor-pointer`}
-                  >
-                    {module.id}
-                  </Button>
+                  <Link href={`/courses/${courseId}/roadmap/${module.id}`}>
+                    <Button
+                      className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br ${module.gradient} text-white text-lg sm:text-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 cursor-pointer`}
+                    >
+                      {module.id}
+                    </Button>
+                  </Link>
                 </div>
 
                 {/* Module Title */}

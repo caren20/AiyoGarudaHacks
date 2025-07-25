@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Stemfiy",
+  name: "Stemify",
 };
 
 export type SiteConfig = typeof siteConfig;
