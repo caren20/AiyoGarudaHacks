@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Computer Science",
+    "description": "Learn how to build mobile, desktop, and web applications",
+    "difficulty": "Easy",
+    "imageSrc": "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2024-12-31"
+  },
+  {
+    "title": "Electronics and Robotics",
+    "description": "Module to learn core ideas behind computers",
+    "difficulty": "Hard",
+    "imageSrc": "https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2025-01-07"
+  },
+  {
+    "title": "Mechanical Design",
+    "description": "Module for core principles of mechanics",
+    "difficulty": "Moderate",
+    "imageSrc": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2025-01-13"
+  },
+  {
+    "title": "Cybersecurity",
+    "description": "Module to learn how to protect data",
+    "difficulty": "Hard",
+    "imageSrc": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2025-01-20"
+  },
+  {
+    "title": "Math and Statistics",
+    "description": "Module to learn how to use maths to solve real-life problems",
+    "difficulty": "Easy",
+    "imageSrc": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2025-01-27"
+  },
+  {
+    "title": "Civil Engineer",
+    "description": "Module to learn how design infrastructure such as bridges, roads, and buildings.",
+    "difficulty": "Moderate",
+    "imageSrc": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2025-02-03"
+  },
+  {
+    "title": "Artifical Intelligence and Machine Learning",
+    "description": "Module to learn how to  computers learn and make decisions",
+    "difficulty": "Hard",
+    "imageSrc": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2025-02-10"
+  },
+  {
+    "title": "Organic Chemistry",
+    "description": "Focuses on carbon-based compounds. Key to pharmaceuticals, plastics, and fuels.",
+    "difficulty": "Hard",
+    "imageSrc": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2025-02-17"
+  }
+]

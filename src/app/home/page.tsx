@@ -12,15 +12,40 @@ import {
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { VoiceNavigationDialog } from "@/components/voice-navigation-dialog";
-import { CourseCard } from "@/components/course-card";
+import { CourseCard } from "@/app/home/_components/course-card";
 import { NewsCard } from "./_components/news-card";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
+import { Course } from "../../../types";
 
 export default function HomePage() {
   const [isVoiceDialogOpen, setIsVoiceDialogOpen] = useState(false);
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [isLoadingCourses, setIsLoadingCourses] = useState(true);
+  const [coursesError, setCoursesError] = useState<string | null>(null);
   const { user, loading } = useAuth();
   const router = useRouter();
+
+  // Fetch courses from API
+  const fetchCourses = async () => {
+    try {
+      setIsLoadingCourses(true);
+      setCoursesError(null);
+
+      const response = await fetch("/api/courses");
+      if (!response.ok) {
+        throw new Error("Failed to fetch courses");
+      }
+
+      const data = await response.json();
+      setCourses(data.courses);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+      setCoursesError("Failed to load courses");
+    } finally {
+      setIsLoadingCourses(false);
+    }
+  };
 
   // Redirect to landing page if not authenticated
   useEffect(() => {
@@ -28,6 +53,13 @@ export default function HomePage() {
       router.push("/");
     }
   }, [user, loading, router]);
+
+  // Fetch courses on component mount
+  useEffect(() => {
+    if (user) {
+      fetchCourses();
+    }
+  }, [user]);
 
   // Get user's first name for greeting
   const getUserFirstName = () => {
@@ -138,43 +170,68 @@ export default function HomePage() {
                 <h2 className="text-2xl font-bold text-gray-800 mb-6">
                   Continue Learning
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <CourseCard
-                    title="Computer Science"
-                    description="Learn how to build mobile, desktop, and web applications"
-                    level="Beginner"
-                    difficulty="Easy"
-                    imageSrc="/placeholder.svg?height=128&width=300"
-                    imageAlt="Computer Science"
-                  />
 
-                  <CourseCard
-                    title="Electronics and Robotics"
-                    description="Master electronic and robotic principles"
-                    level="Intermediate"
-                    difficulty="Hard"
-                    imageSrc="/placeholder.svg?height=128&width=300"
-                    imageAlt="Electronics and Robotics"
-                  />
+                {/* Loading State */}
+                {isLoadingCourses && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {[...Array(4)].map((_, index) => (
+                      <div
+                        key={index}
+                        className="bg-white rounded-lg p-6 animate-pulse"
+                      >
+                        <div className="h-32 bg-gray-200 rounded-lg mb-4"></div>
+                        <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                        <div className="h-3 bg-gray-200 rounded mb-4"></div>
+                        <div className="h-8 bg-gray-200 rounded"></div>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
-                  <CourseCard
-                    title="Mechanical Design"
-                    description="Learn mechanical design and engineering"
-                    level="Intermediate"
-                    difficulty="Intermediate"
-                    imageSrc="/placeholder.svg?height=128&width=300"
-                    imageAlt="Mechanical Design"
-                  />
+                {/* Error State */}
+                {coursesError && (
+                  <div className="text-center py-8">
+                    <p className="text-red-600 mb-4">{coursesError}</p>
+                    <Button onClick={fetchCourses} variant="outline">
+                      Try Again
+                    </Button>
+                  </div>
+                )}
 
-                  <CourseCard
-                    title="Cybersecurity"
-                    description="Build the skills to learn how to protect data"
-                    level="Advanced"
-                    difficulty="Advanced"
-                    imageSrc="/placeholder.svg?height=128&width=300"
-                    imageAlt="Cybersecurity"
-                  />
-                </div>
+                {/* Courses Grid */}
+                {!isLoadingCourses && !coursesError && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {courses.map((course) => (
+                      <CourseCard
+                        key={course.id}
+                        id={course.id}
+                        title={course.title}
+                        description={course.description}
+                        difficulty={course.difficulty}
+                        date={new Date(course.createdAt).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          }
+                        )}
+                        imageSrc={course.imageSrc}
+                        imageAlt={course.title}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* Empty State */}
+                {!isLoadingCourses && !coursesError && courses.length === 0 && (
+                  <div className="text-center py-8">
+                    <p className="text-gray-600 mb-4">No courses found</p>
+                    <Button onClick={fetchCourses} variant="outline">
+                      Refresh
+                    </Button>
+                  </div>
+                )}
               </div>
 
               {/* Recent News */}

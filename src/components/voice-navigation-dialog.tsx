@@ -202,38 +202,13 @@ export function VoiceNavigationDialog({
             )}
           </div>
 
-          {/* Show Cancel and Finish buttons when listening */}
-          {isListening && (
-            <div className="flex gap-4">
-              <Button
-                variant="outline"
-                size="lg"
-                className="flex items-center gap-2 bg-red-50 hover:bg-red-100 border-red-200 text-red-600"
-                onClick={cancelListening}
-              >
-                <X className="w-4 h-4" />
-                Cancel
-              </Button>
-              <Button
-                size="lg"
-                className="flex items-center gap-2 bg-green-600 hover:bg-green-700"
-                onClick={finishListening}
-              >
-                <Check className="w-4 h-4" />
-                Finish
-              </Button>
-            </div>
-          )}
-
           <div className="text-center">
             <p className="text-sm font-medium text-gray-700">
-              {isListening
-                ? "Listening... Use buttons below to cancel or finish"
-                : "Click to start listening"}
+              {isListening ? "Listening..." : "Click to start listening"}
             </p>
             <p className="text-xs text-gray-500 mt-1">
               {isListening
-                ? "Speak your command, then click Finish when done"
+                ? ""
                 : "Say: Home, Courses, News, Profile, or Settings"}
             </p>
             {!isSupported && (
@@ -248,6 +223,27 @@ export function VoiceNavigationDialog({
               <p className="text-sm text-gray-700">
                 <strong>You said:</strong> {transcript}
               </p>
+            </div>
+          )}
+
+          {/* Position Cancel and Finish buttons at bottom corners when listening */}
+          {isListening && (
+            <div className="relative w-full h-12">
+              <Button
+                variant="outline"
+                size="sm"
+                className="absolute bottom-0 left-0 w-10 h-10 p-0 bg-red-50 hover:bg-red-100 border-red-200 text-red-600 rounded-full"
+                onClick={cancelListening}
+              >
+                <X className="w-4 h-4" />
+              </Button>
+              <Button
+                size="sm"
+                className="absolute bottom-0 right-0 w-10 h-10 p-0 bg-green-600 hover:bg-green-700 rounded-full"
+                onClick={finishListening}
+              >
+                <Check className="w-4 h-4" />
+              </Button>
             </div>
           )}
         </div>

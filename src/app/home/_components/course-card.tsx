@@ -2,29 +2,25 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { Course } from "../../../../types";
 
-interface CourseCardProps {
-  title: string;
-  description: string;
-  level: string;
-  difficulty: "Easy" | "Intermediate" | "Hard" | "Advanced";
-  imageSrc: string;
+interface CourseCardProps extends Omit<Course, "createdAt"> {
+  date: string;
   imageAlt: string;
   onContinue?: () => void;
 }
 
 const difficultyConfig = {
   Easy: "bg-green-500",
-  Intermediate: "bg-orange-500",
+  Moderate: "bg-orange-500",
   Hard: "bg-red-500",
-  Advanced: "bg-teal-500",
 };
 
 export function CourseCard({
   title,
   description,
-  level,
   difficulty,
+  date,
   imageSrc,
   imageAlt,
   onContinue,
@@ -42,7 +38,7 @@ export function CourseCard({
       <CardContent className="p-4">
         <h3 className="font-bold text-gray-800 mb-1">{title}</h3>
         <p className="text-sm text-gray-600 mb-2">{description}</p>
-        <p className="text-xs text-gray-500 mb-3">Level: {level}</p>
+        <p className="text-xs text-gray-500 mb-3">Released: {date}</p>
         <Button
           variant="outline"
           size="sm"
