@@ -72,6 +72,60 @@ function findCourseByName(
   return foundCourse || null;
 }
 
+// Function to find session by title within courses
+function findSessionByTitle(
+  courses: Course[],
+  searchTerm: string,
+  courseName?: string
+): { course: Course; sessionIndex: number } | null {
+  const normalizedSearch = searchTerm.toLowerCase().trim();
+
+  // If course name is provided, search only in that course
+  const coursesToSearch = courseName
+    ? courses.filter(
+        (course) =>
+          course.title.toLowerCase().includes(courseName.toLowerCase()) ||
+          courseName.toLowerCase().includes(course.title.toLowerCase())
+      )
+    : courses;
+
+  for (const course of coursesToSearch) {
+    if (!course.sessions || course.sessions.length === 0) continue;
+
+    for (let i = 0; i < course.sessions.length; i++) {
+      const session = course.sessions[i];
+
+      // Check session title match
+      const normalizedTitle = session.sessionTitle.toLowerCase();
+
+      // Exact match
+      if (
+        normalizedTitle.includes(normalizedSearch) ||
+        normalizedSearch.includes(normalizedTitle)
+      ) {
+        return { course, sessionIndex: i };
+      }
+
+      // Word-by-word match for session title
+      const searchWords = normalizedSearch.split(" ");
+      const titleWords = normalizedTitle.split(" ");
+
+      const wordMatch = searchWords.some((searchWord) =>
+        titleWords.some(
+          (titleWord) =>
+            titleWord.includes(searchWord) || searchWord.includes(titleWord)
+        )
+      );
+
+      if (wordMatch) {
+        return { course, sessionIndex: i };
+      }
+    }
+  }
+
+  return null;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { command } = await request.json();
@@ -109,18 +163,28 @@ ${courseList}
 User command: "${command}"
 
 Rules:
-1. For basic navigation (home, courses, news, profile, settings), return direct routes
-2. If user mentions a specific course name, try to match it with available courses and return the course roadmap route
-3. If user wants "course roadmap" without specifying which course, direct them to courses list
-4. Be flexible with language - understand variations like "show me courses", "take me to my profile", etc.
-5. Handle typos and grammar mistakes gracefully
-6. For course names, try partial matching (e.g., "javascript" could match "JavaScript Fundamentals")
-7. If no clear match is found, provide helpful suggestions
+1. For basic navigation (home, courses, news, profile), return direct routes
+2. If user mentions a course name only, return course roadmap route
+3. If user mentions a session title, return session detail route
+4. If user wants "course roadmap" without specifying which course, direct them to courses list
+5. Be flexible with language - understand variations like "show me courses", "take me to my profile", etc.
+6. Handle typos and grammar mistakes gracefully
+7. For course names, try partial matching (e.g., "computer science" matches "Computer Science")
+8. For session titles, try partial matching (e.g., "introduction" could match "Introduction to Computer Science")
+9. If no clear match is found, provide helpful suggestions
 
-Special handling for courses:
-- If user says something like "go to javascript course" or "show me python roadmap", try to find a matching course
-- Return the specific course roadmap route: "/courses/[actualCourseId]/roadmap"
-- If multiple courses match, suggest going to courses list first
+IMPORTANT - Route Selection:
+- Course only: "/courses/[courseId]/roadmap" (no sessionTitle field)
+- Session title: "/courses/[courseId]/roadmap/[sessionId]" (with sessionTitle field)
+
+Examples of when to use session routes:
+- "introduction to computer science" → session route (sessionTitle="Introduction to Computer Science")
+- "programming fundamentals" → session route (sessionTitle="Programming Fundamentals")
+- "security research ethics" → session route (sessionTitle="Security Research & Ethics")
+
+Examples of when to use course routes:
+- "computer science course" → course route (courseName="Computer Science")
+- "show me cybersecurity" → course route (courseName="Cybersecurity")
 
 Return your response in this exact JSON format:
 {
@@ -128,14 +192,16 @@ Return your response in this exact JSON format:
   "message": "Navigation message for user",
   "requiresId": false,
   "type": "success|error|redirect",
-  "courseName": "course name if matched"
+  "courseName": "course name if matched",
+  "sessionTitle": "session title if session search"
 }
 
 Examples:
-- "go home" -> {"route": "/", "message": "Navigating to Home", "requiresId": false, "type": "success"}
-- "show courses" -> {"route": "/courses", "message": "Navigating to Courses", "requiresId": false, "type": "success"}
-- "javascript course" -> {"route": "/courses/[courseId]/roadmap", "message": "Navigating to JavaScript course roadmap", "requiresId": false, "type": "success", "courseName": "JavaScript Fundamentals"}
-- "course roadmap" -> {"route": "/courses", "message": "Please select a course first to view its roadmap", "requiresId": true, "type": "redirect"}
+- "go home" → {"route": "/", "message": "Navigating to Home", "requiresId": false, "type": "success"}
+- "show courses" → {"route": "/courses", "message": "Navigating to Courses", "requiresId": false, "type": "success"}
+- "computer science course" → {"route": "/courses/[courseId]/roadmap", "message": "Navigating to Computer Science roadmap", "requiresId": false, "type": "success", "courseName": "Computer Science"}
+- "introduction to computer science" → {"route": "/courses/[courseId]/roadmap/[sessionId]", "message": "Found session", "requiresId": false, "type": "success", "sessionTitle": "Introduction to Computer Science"}
+- "programming fundamentals" → {"route": "/courses/[courseId]/roadmap/[sessionId]", "message": "Found session", "requiresId": false, "type": "success", "sessionTitle": "Programming Fundamentals"}
 `;
 
     const result = await model.generateContent(prompt);
@@ -148,26 +214,75 @@ Examples:
       if (jsonMatch) {
         const navigationResult = JSON.parse(jsonMatch[0]);
 
-        // If the AI suggested a course name, try to find the actual course
+        // Handle course and session navigation
         if (
-          navigationResult.courseName &&
-          navigationResult.route.includes("[courseId]")
+          navigationResult.route.includes("[courseId]") ||
+          navigationResult.route.includes("[sessionId]")
         ) {
-          const foundCourse = findCourseByName(
-            courses,
-            navigationResult.courseName
-          );
-          if (foundCourse) {
-            navigationResult.route = navigationResult.route.replace(
-              "[courseId]",
-              foundCourse.id
+          console.log("Navigation result:", navigationResult);
+
+          // Handle session title search first
+          if (
+            navigationResult.sessionTitle &&
+            navigationResult.route.includes("[sessionId]")
+          ) {
+            console.log(
+              "Searching for session with title:",
+              navigationResult.sessionTitle
             );
-            navigationResult.message = `Navigating to ${foundCourse.title} roadmap`;
-          } else {
-            // If course not found, redirect to courses list
-            navigationResult.route = "/courses";
-            navigationResult.message = `I couldn't find "${navigationResult.courseName}". Please select from available courses.`;
-            navigationResult.type = "redirect";
+
+            const sessionResult = findSessionByTitle(
+              courses,
+              navigationResult.sessionTitle
+            );
+            console.log("Session search result:", sessionResult);
+
+            if (sessionResult) {
+              const newRoute = navigationResult.route
+                .replace("[courseId]", sessionResult.course.id)
+                .replace(
+                  "[sessionId]",
+                  (sessionResult.sessionIndex + 1).toString()
+                );
+              console.log("Final route:", newRoute);
+
+              navigationResult.route = newRoute;
+              navigationResult.message = `Found "${
+                sessionResult.course.sessions[sessionResult.sessionIndex]
+                  .sessionTitle
+              }" in ${sessionResult.course.title}`;
+            } else {
+              // Session not found, redirect to courses list
+              navigationResult.route = "/courses";
+              navigationResult.message = `Couldn't find session "${navigationResult.sessionTitle}". Please browse available courses.`;
+              navigationResult.type = "redirect";
+            }
+          }
+          // Handle course name search
+          else if (
+            navigationResult.courseName &&
+            navigationResult.route.includes("[courseId]")
+          ) {
+            console.log("Searching for course:", navigationResult.courseName);
+
+            const foundCourse = findCourseByName(
+              courses,
+              navigationResult.courseName
+            );
+            console.log("Found course:", foundCourse?.title);
+
+            if (foundCourse) {
+              navigationResult.route = navigationResult.route.replace(
+                "[courseId]",
+                foundCourse.id
+              );
+              navigationResult.message = `Navigating to ${foundCourse.title} roadmap`;
+            } else {
+              // Course not found, redirect to courses list
+              navigationResult.route = "/courses";
+              navigationResult.message = `I couldn't find "${navigationResult.courseName}". Please select from available courses.`;
+              navigationResult.type = "redirect";
+            }
           }
         }
 
@@ -180,7 +295,7 @@ Examples:
       return NextResponse.json({
         route: "/",
         message:
-          "I didn't understand that command. Try saying: Home, Courses, News, Profile, Settings, or a course name.",
+          "I didn't understand that command. Try saying: Home, Courses, News, Profile, or a course name with topic.",
         requiresId: false,
         type: "error",
       });

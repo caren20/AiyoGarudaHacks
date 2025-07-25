@@ -39,6 +39,13 @@ export default function SessionPage() {
         setIsLoading(true);
         setError(null);
 
+        // Check if sessionId is valid
+        if (isNaN(sessionId) || sessionId < 1) {
+          // Redirect to course roadmap instead of showing error
+          window.location.href = `/courses/${courseId}/roadmap`;
+          return;
+        }
+
         const response = await fetch(`/api/courses/${courseId}`);
         if (!response.ok) {
           throw new Error("Failed to fetch course");
@@ -65,7 +72,7 @@ export default function SessionPage() {
       }
     };
 
-    if (courseId && sessionId) {
+    if (courseId) {
       fetchCourseAndSession();
     }
   }, [courseId, sessionId]);
