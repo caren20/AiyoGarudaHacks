@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
-import { db } from "@/lib/firebase-admin";
+import { db } from "@/lib/firebase";
 import { Course } from "../../../../types";
 
 export async function GET() {
@@ -22,6 +22,7 @@ export async function GET() {
         description: data.description,
         difficulty: data.difficulty,
         imageSrc: data.imageSrc,
+        sessions: data.sessions || [],
         createdAt:
           data.createdAt?.toDate?.()?.toISOString() || new Date().toISOString(),
       };

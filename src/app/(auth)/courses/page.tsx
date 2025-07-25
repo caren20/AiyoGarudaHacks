@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Course } from "../../../../types";
 
 export default function CoursesPage() {
@@ -12,6 +13,7 @@ export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [isLoadingCourses, setIsLoadingCourses] = useState(true);
   const [coursesError, setCoursesError] = useState<string | null>(null);
+  const router = useRouter();
 
   // Fetch courses from API
   const fetchCourses = async () => {
@@ -156,6 +158,9 @@ export default function CoursesPage() {
                       variant="outline"
                       size="sm"
                       className="w-full bg-transparent"
+                      onClick={() =>
+                        router.push(`/courses/${course.id}/roadmap`)
+                      }
                     >
                       Continue to Course
                     </Button>
@@ -234,6 +239,9 @@ export default function CoursesPage() {
                           <Button
                             size="sm"
                             className="bg-purple-600 hover:bg-purple-700"
+                            onClick={() =>
+                              router.push(`/courses/${course.id}/roadmap`)
+                            }
                           >
                             View Course
                           </Button>

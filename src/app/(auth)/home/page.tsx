@@ -126,17 +126,10 @@ export default function HomePage() {
               {courses.map((course) => (
                 <CourseCard
                   key={course.id}
-                  id={course.id}
-                  title={course.title}
-                  description={course.description}
-                  difficulty={course.difficulty}
-                  date={new Date(course.createdAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                  imageSrc={course.imageSrc}
-                  imageAlt={course.title}
+                  course={course}
+                  onContinue={() =>
+                    router.push(`/courses/${course.id}/roadmap`)
+                  }
                 />
               ))}
             </div>

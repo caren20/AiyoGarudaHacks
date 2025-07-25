@@ -4,55 +4,500 @@
     "description": "Learn how to build mobile, desktop, and web applications",
     "difficulty": "Easy",
     "imageSrc": "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "createdAt": "2024-12-31"
+    "createdAt": "2024-12-31",
+    "sessions": [
+      {
+        "sessionNumber": "Session 1",
+        "sessionTitle": "Introduction to Computer Science",
+        "videoSrc": "https://www.youtube.com/watch?v=tpIctyqH29Q",
+        "topicsRelated": [
+          "computer science overview",
+          "history of computing",
+          "foundations of CS"
+        ]
+      },
+      {
+        "sessionNumber": "Session 2",
+        "sessionTitle": "Programming Fundamentals",
+        "videoSrc": "https://www.youtube.com/watch?v=xAcTmDO6NTI",
+        "topicsRelated": ["python programming", "variables", "basic syntax"]
+      },
+      {
+        "sessionNumber": "Session 3",
+        "sessionTitle": "Web Development Basics",
+        "videoSrc": "https://www.youtube.com/watch?v=aO7A1Clxh0U",
+        "topicsRelated": [
+          "html basics",
+          "css basics",
+          "javascript introduction"
+        ]
+      },
+      {
+        "sessionNumber": "Session 4",
+        "sessionTitle": "Algorithms and Problem Solving",
+        "videoSrc": "https://www.youtube.com/watch?v=l26oaHV7D40",
+        "topicsRelated": [
+          "functions in programming",
+          "control flow",
+          "algorithm basics"
+        ]
+      },
+      {
+        "sessionNumber": "Session 5",
+        "sessionTitle": "Databases and Storage",
+        "videoSrc": "https://www.youtube.com/watch?v=9FxIK1DA5M4",
+        "topicsRelated": [
+          "C fundamentals",
+          "data storage",
+          "basic database concepts"
+        ]
+      },
+      {
+        "sessionNumber": "Session 6",
+        "sessionTitle": "Artificial Intelligence Fundamentals",
+        "videoSrc": "https://www.youtube.com/watch?v=kQ3K7Y4AQcs",
+        "topicsRelated": [
+          "AI introduction",
+          "machine learning basics",
+          "CS applications"
+        ]
+      }
+    ]
   },
   {
     "title": "Electronics and Robotics",
     "description": "Module to learn core ideas behind computers",
     "difficulty": "Hard",
     "imageSrc": "https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "createdAt": "2025-01-07"
+    "createdAt": "2025-01-07",
+    "sessions": [
+      {
+        "sessionNumber": "Session 1",
+        "sessionTitle": "Introduction to Robotics",
+        "videoSrc": "https://www.youtube.com/watch?v=bAckJ201vjM",
+        "topicsRelated": [
+          "robotics introduction",
+          "Lehigh University",
+          "Rosa Zheng",
+          "robotics education"
+        ]
+      },
+      {
+        "sessionNumber": "Session 2",
+        "sessionTitle": "Soft Robotics and Applications",
+        "videoSrc": "https://www.youtube.com/watch?v=N6_jmD_89qM",
+        "topicsRelated": [
+          "soft robotics",
+          "Allison Okamura",
+          "human‑robot interaction"
+        ]
+      },
+      {
+        "sessionNumber": "Session 3",
+        "sessionTitle": "Engineering Inspiration & Invention",
+        "videoSrc": "https://www.youtube.com/watch?v=gjDcBMJy_bg",
+        "topicsRelated": [
+          "women in AI",
+          "robotics navigation",
+          "innovation talk"
+        ]
+      },
+      {
+        "sessionNumber": "Session 4",
+        "sessionTitle": "Robotics Primer and Research",
+        "videoSrc": "https://www.youtube.com/watch?v=NASAILDmheI",
+        "topicsRelated": [
+          "Carlotta Berry",
+          "robotics research",
+          "robotics education"
+        ]
+      },
+      {
+        "sessionNumber": "Session 5",
+        "sessionTitle": "AI & Robotics Horizons",
+        "videoSrc": "https://www.youtube.com/watch?v=9OSWaNDZyqQ",
+        "topicsRelated": ["Daniela Rus", "AI robotics future", "MIT CSAIL"]
+      },
+      {
+        "sessionNumber": "Session 6",
+        "sessionTitle": "Women Leaders in Robotics",
+        "videoSrc": "https://www.youtube.com/watch?v=BQ6UMXYAbKI",
+        "topicsRelated": [
+          "Cynthia Breazeal",
+          "women in AI education",
+          "robotics and learning"
+        ]
+      }
+    ]
   },
   {
     "title": "Mechanical Design",
     "description": "Module for core principles of mechanics",
     "difficulty": "Moderate",
     "imageSrc": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "createdAt": "2025-01-13"
+    "createdAt": "2025-01-13",
+    "sessions": [
+      {
+        "sessionNumber": "Session 1",
+        "sessionTitle": "Engineering Projects and Inspiration",
+        "videoSrc": "https://www.youtube.com/watch?v=CKqrQUHYgrM",
+        "topicsRelated": [
+          "Xyla Foxlin",
+          "mechanical projects",
+          "DIY engineering"
+        ]
+      },
+      {
+        "sessionNumber": "Session 2",
+        "sessionTitle": "Soft Robotics Foundations",
+        "videoSrc": "https://www.youtube.com/watch?v=N6_jmD_89qM",
+        "topicsRelated": [
+          "soft robotics",
+          "Allison Okamura",
+          "mechanical design"
+        ]
+      },
+      {
+        "sessionNumber": "Session 3",
+        "sessionTitle": "Robotics Research in Practice",
+        "videoSrc": "https://www.youtube.com/watch?v=NASAILDmheI",
+        "topicsRelated": [
+          "Carlotta Berry",
+          "engineering education",
+          "robotics research"
+        ]
+      },
+      {
+        "sessionNumber": "Session 4",
+        "sessionTitle": "AI-Enabled Mechanical Systems",
+        "videoSrc": "https://www.youtube.com/watch?v=9OSWaNDZyqQ",
+        "topicsRelated": ["Daniela Rus", "mechatronics", "AI robotics"]
+      },
+      {
+        "sessionNumber": "Session 5",
+        "sessionTitle": "Human‑Robot Interaction Design",
+        "videoSrc": "https://www.youtube.com/watch?v=bAckJ201vjM",
+        "topicsRelated": ["Rosa Zheng", "HRI", "robotics design"]
+      },
+      {
+        "sessionNumber": "Session 6",
+        "sessionTitle": "Innovation in Engineering",
+        "videoSrc": "https://www.youtube.com/watch?v=BQ6UMXYAbKI",
+        "topicsRelated": [
+          "Cynthia Breazeal",
+          "innovation",
+          "engineering education"
+        ]
+      }
+    ]
   },
   {
     "title": "Cybersecurity",
     "description": "Module to learn how to protect data",
     "difficulty": "Hard",
     "imageSrc": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "createdAt": "2025-01-20"
+    "createdAt": "2025-01-20",
+    "sessions": [
+      {
+        "sessionNumber": "Session 1",
+        "sessionTitle": "Cybersecurity Career Insights",
+        "videoSrc": "https://www.youtube.com/watch?v=hCUMVjaZuvQ",
+        "topicsRelated": [
+          "women in cybersecurity",
+          "career guidance",
+          "Lisa Hayashi"
+        ]
+      },
+      {
+        "sessionNumber": "Session 2",
+        "sessionTitle": "Trailblazers in Cybersecurity",
+        "videoSrc": "https://www.youtube.com/watch?v=otGmH9sl4h8",
+        "topicsRelated": [
+          "women leaders",
+          "Palo Alto Networks",
+          "cybersecurity stories"
+        ]
+      },
+      {
+        "sessionNumber": "Session 3",
+        "sessionTitle": "Introduction with Caitlin Sarian",
+        "videoSrc": "https://www.youtube.com/watch?v=XIoxCWJqbEQ",
+        "topicsRelated": [
+          "Caitlin Sarian",
+          "data protection",
+          "cybersecurity basics"
+        ]
+      },
+      {
+        "sessionNumber": "Session 4",
+        "sessionTitle": "Educational Resources: Women in Cybersecurity",
+        "videoSrc": "https://www.youtube.com/watch?v=c2z6madcHvM",
+        "topicsRelated": ["women in STEM", "cybersecurity mini masterclass"]
+      },
+      {
+        "sessionNumber": "Session 5",
+        "sessionTitle": "Security Research & Ethics",
+        "videoSrc": "https://www.youtube.com/watch?v=hCUMVjaZuvQ",
+        "topicsRelated": ["ethical hacking", "career pathways", "female expert"]
+      },
+      {
+        "sessionNumber": "Session 6",
+        "sessionTitle": "The Role of Hackers",
+        "videoSrc": "https://www.youtube.com/watch?v=otGmH9sl4h8",
+        "topicsRelated": ["Keren Elazari", "good hackers", "cyber ethics"]
+      }
+    ]
   },
   {
     "title": "Math and Statistics",
     "description": "Module to learn how to use maths to solve real-life problems",
     "difficulty": "Easy",
     "imageSrc": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "createdAt": "2025-01-27"
+    "createdAt": "2025-01-27",
+    "sessions": [
+      {
+        "sessionNumber": "Session 1",
+        "sessionTitle": "Women in Mathematics & Statistics",
+        "videoSrc": "https://www.youtube.com/watch?v=NMAIvv-5z40",
+        "topicsRelated": [
+          "women in statistics",
+          "Deborah Ashby",
+          "history of statistics"
+        ]
+      },
+      {
+        "sessionNumber": "Session 2",
+        "sessionTitle": "How Maths Influences Everyday Life",
+        "videoSrc": "https://www.youtube.com/watch?v=_FNpKjs0Va0",
+        "topicsRelated": [
+          "eugenia cheng",
+          "real‑world maths",
+          "math communication"
+        ]
+      },
+      {
+        "sessionNumber": "Session 3",
+        "sessionTitle": "Intro to Mathematical Statistics",
+        "videoSrc": "https://www.youtube.com/watch?v=TqM0oUJM2XM",
+        "topicsRelated": [
+          "mathematical statistics overview",
+          "lecture introduction",
+          "stat vs probability"
+        ]
+      },
+      {
+        "sessionNumber": "Session 4",
+        "sessionTitle": "Statistical Theory Foundation",
+        "videoSrc": "https://www.youtube.com/watch?v=zjghMrMekZ8",
+        "topicsRelated": [
+          "lecture 1 statistics",
+          "HSE statistics",
+          "female lecturer"
+        ]
+      },
+      {
+        "sessionNumber": "Session 5",
+        "sessionTitle": "Modern Statistical Research by Women",
+        "videoSrc": "https://www.youtube.com/watch?v=9Ezq8CX3KVo",
+        "topicsRelated": [
+          "women in mathematics history",
+          "LSE seminar",
+          "public lecture"
+        ]
+      },
+      {
+        "sessionNumber": "Session 6",
+        "sessionTitle": "Taster Lecture on University Maths",
+        "videoSrc": "https://www.youtube.com/watch?v=CEfo1ezCleI",
+        "topicsRelated": [
+          "maths taster session",
+          "Lisa Mott",
+          "university lecture"
+        ]
+      }
+    ]
   },
   {
     "title": "Civil Engineer",
     "description": "Module to learn how design infrastructure such as bridges, roads, and buildings.",
     "difficulty": "Moderate",
     "imageSrc": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "createdAt": "2025-02-03"
+    "createdAt": "2025-02-03",
+    "sessions": [
+      {
+        "sessionNumber": "Session 1",
+        "sessionTitle": "Journey of a Latina Civil Engineer",
+        "videoSrc": "https://www.youtube.com/watch?v=ACURuTZmCXA",
+        "topicsRelated": [
+          "Dolores Vazquez",
+          "Latina civil engineer",
+          "career story"
+        ]
+      },
+      {
+        "sessionNumber": "Session 2",
+        "sessionTitle": "Women in Civil Engineering Podcast",
+        "videoSrc": "https://www.youtube.com/watch?v=CTis72XO_U8",
+        "topicsRelated": [
+          "women in civil engineering",
+          "Danielle Goudreau",
+          "career obstacles"
+        ]
+      },
+      {
+        "sessionNumber": "Session 3",
+        "sessionTitle": "State of Women in Civil Engineering",
+        "videoSrc": "https://www.youtube.com/watch?v=NC6JdT_6R9M",
+        "topicsRelated": [
+          "Stephanie Slocum",
+          "structural engineering",
+          "ASCE interchange"
+        ]
+      },
+      {
+        "sessionNumber": "Session 4",
+        "sessionTitle": "Advice from a Female Bridge Engineer",
+        "videoSrc": "https://www.youtube.com/watch?v=hMQLaTTxW34",
+        "topicsRelated": ["Yara Hammad", "bridge engineer", "career advice"]
+      },
+      {
+        "sessionNumber": "Session 5",
+        "sessionTitle": "How Field Assignments Shape Engineers",
+        "videoSrc": "https://www.youtube.com/watch?v=JUlltiGPRmY",
+        "topicsRelated": [
+          "field assignments",
+          "civil engineering practice",
+          "women engineers"
+        ]
+      },
+      {
+        "sessionNumber": "Session 6",
+        "sessionTitle": "Early Female Civil Engineering Pioneer",
+        "videoSrc": "https://www.youtube.com/watch?v=JUlltiGPRmY",
+        "topicsRelated": [
+          "Shakuntala Bhagat",
+          "first Indian woman engineer",
+          "bridge design"
+        ]
+      }
+    ]
   },
   {
     "title": "Artifical Intelligence and Machine Learning",
     "description": "Module to learn how to  computers learn and make decisions",
     "difficulty": "Hard",
     "imageSrc": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "createdAt": "2025-02-10"
+    "createdAt": "2025-02-10",
+    "sessions": [
+      {
+        "sessionNumber": "Session 1",
+        "sessionTitle": "Intro to AI for All",
+        "videoSrc": "https://www.youtube.com/watch?v=9OSWaNDZyqQ",
+        "topicsRelated": ["AI introduction", "Daniela Rus", "AI future"]
+      },
+      {
+        "sessionNumber": "Session 2",
+        "sessionTitle": "Neuroengineering and AI Ethics",
+        "videoSrc": "https://www.youtube.com/watch?v=NA ",
+        "topicsRelated": ["Jordan Harrod", "AI ethics", "neuroengineering"]
+      },
+      {
+        "sessionNumber": "Session 3",
+        "sessionTitle": "AI Education & Women",
+        "videoSrc": "https://www.youtube.com/watch?v=BQ6UMXYAbKI",
+        "topicsRelated": ["Cynthia Breazeal", "AI education", "women in tech"]
+      },
+      {
+        "sessionNumber": "Session 4",
+        "sessionTitle": "Machine Learning Applications",
+        "videoSrc": "https://www.youtube.com/watch?v=9OSWaNDZyqQ",
+        "topicsRelated": ["ML basics", "Daniela Rus", "applied AI"]
+      },
+      {
+        "sessionNumber": "Session 5",
+        "sessionTitle": "Neuro‑AI Intersection",
+        "videoSrc": "https://www.youtube.com/watch?v=NA ",
+        "topicsRelated": [
+          "Jordan Harrod",
+          "brain-machine interfaces",
+          "AI medicine"
+        ]
+      },
+      {
+        "sessionNumber": "Session 6",
+        "sessionTitle": "Future of AI Leadership",
+        "videoSrc": "https://www.youtube.com/watch?v=BQ6UMXYAbKI",
+        "topicsRelated": [
+          "Cynthia Breazeal",
+          "AI leadership",
+          "education innovation"
+        ]
+      }
+    ]
   },
   {
     "title": "Organic Chemistry",
     "description": "Focuses on carbon-based compounds. Key to pharmaceuticals, plastics, and fuels.",
     "difficulty": "Hard",
     "imageSrc": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "createdAt": "2025-02-17"
+    "createdAt": "2025-02-17",
+    "sessions": [
+      {
+        "sessionNumber": "Session 1",
+        "sessionTitle": "Organic Chemistry Tutor — Basics",
+        "videoSrc": "https://www.youtube.com/channel/UCEWpbFLzoYGPfuWUMFPSaoA",
+        "topicsRelated": [
+          "organic chemistry tutor",
+          "basic orgo concepts",
+          "female tutor"
+        ]
+      },
+      {
+        "sessionNumber": "Session 2",
+        "sessionTitle": "Leah4sci Organic Chemistry Tutorial",
+        "videoSrc": "https://www.youtube.com/watch?v=EemuvkDn3C8",
+        "topicsRelated": [
+          "Leah4sci",
+          "organic chemistry tutorial",
+          "female instructor"
+        ]
+      },
+      {
+        "sessionNumber": "Session 3",
+        "sessionTitle": "Carolyn Bertozzi Nobel Prize Lecture",
+        "videoSrc": "https://www.youtube.com/watch?v=YlynjXArF8A",
+        "topicsRelated": [
+          "Carolyn Bertozzi",
+          "2022 Nobel Prize",
+          "biochemistry"
+        ]
+      },
+      {
+        "sessionNumber": "Session 4",
+        "sessionTitle": "Vy Maria Dong on Catalysis",
+        "videoSrc": "https://www.youtube.com/watch?v=WhVlz30vsCQ",
+        "topicsRelated": ["Vy Dong", "organic catalysis", "C‑H bond activation"]
+      },
+      {
+        "sessionNumber": "Session 5",
+        "sessionTitle": "M. Christina White on C-H Activation",
+        "videoSrc": null,
+        "topicsRelated": [
+          "Christina White",
+          "organometallic chemistry",
+          "C‑H functionalization"
+        ]
+      },
+      {
+        "sessionNumber": "Session 6",
+        "sessionTitle": "Women in Organic Chemistry Education",
+        "videoSrc": "https://www.youtube.com/watch?v=69vHgA_kV8Y",
+        "topicsRelated": [
+          "Moira Bode lecture",
+          "women in chemistry",
+          "organic teaching"
+        ]
+      }
+    ]
   }
 ]

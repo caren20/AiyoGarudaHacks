@@ -1,5 +1,13 @@
 import { Timestamp } from "firebase/firestore";
 
+// Session interface for course modules
+export interface Session {
+  sessionNumber: string;
+  sessionTitle: string;
+  videoSrc: string | null;
+  topicsRelated: string[];
+}
+
 // Base Course interface (for API responses and general use)
 export interface Course {
   id: string;
@@ -8,6 +16,7 @@ export interface Course {
   difficulty: "Easy" | "Moderate" | "Hard";
   imageSrc: string;
   createdAt: string; // ISO string
+  sessions: Session[];
 }
 
 // Course data from JSON (before conversion to Firestore) - no id needed
