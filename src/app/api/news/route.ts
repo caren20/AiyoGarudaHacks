@@ -14,7 +14,7 @@ export async function GET() {
     );
 
     const querySnapshot = await getDocs(newsQuery);
-    
+
     const news: News[] = querySnapshot.docs.map((doc) => {
       const data = doc.data();
       return {

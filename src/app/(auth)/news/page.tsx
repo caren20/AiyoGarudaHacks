@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { News } from "../../../../types";
 
 export default function NewsPage() {
   const [news, setNews] = useState<News[]>([]);
   const [isLoadingNews, setIsLoadingNews] = useState(true);
   const [newsError, setNewsError] = useState<string | null>(null);
+  const router = useRouter();
 
   // Fetch news from API
   const fetchNews = async () => {
@@ -158,7 +160,13 @@ export default function NewsPage() {
                           variant="outline"
                           size="sm"
                           className="bg-white text-blue-600 border-blue-200 hover:bg-blue-50"
-                          onClick={() => console.log("Read more:", article.id)}
+                          onClick={() =>
+                            router.push(
+                              `/news/${
+                                news.findIndex((n) => n.id === article.id) + 1
+                              }`
+                            )
+                          }
                         >
                           Read Now
                         </Button>
@@ -191,10 +199,11 @@ export default function NewsPage() {
                 Most Popular
               </h2>
               <div className="space-y-4">
-                {mostPopularNews.map((article) => (
+                {mostPopularNews.map((article, index) => (
                   <Card
                     key={article.id}
-                    className="overflow-hidden hover:shadow-lg transition-shadow"
+                    className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+                    onClick={() => router.push(`/news/${index + 1}`)}
                   >
                     <CardContent className="p-0">
                       <div className="flex">

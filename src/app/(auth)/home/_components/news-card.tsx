@@ -1,14 +1,26 @@
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { News } from "../../../../../types";
 
 interface NewsCardProps {
   news: News;
+  index?: number; // Add index prop to determine the news ID for routing
 }
 
-export function NewsCard({ news }: NewsCardProps) {
+export function NewsCard({ news, index = 0 }: NewsCardProps) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    // Navigate to news detail page using index + 1 as the newsId
+    router.push(`/news/${index + 1}`);
+  };
+
   return (
-    <Card className="overflow-hidden bg-white border border-gray-200 shadow-sm rounded-xl">
+    <Card
+      className="overflow-hidden bg-white border border-gray-200 shadow-sm rounded-xl cursor-pointer hover:shadow-md transition-shadow"
+      onClick={handleClick}
+    >
       <CardContent className="p-0">
         <div className="flex">
           <div className="flex-1 p-4">

@@ -218,8 +218,8 @@ export default function HomePage() {
           {/* News List */}
           {!isLoadingNews && !newsError && (
             <div className="space-y-4">
-              {news.map((article) => (
-                <NewsCard key={article.id} news={article} />
+              {news.map((article, index) => (
+                <NewsCard key={article.id} news={article} index={index} />
               ))}
             </div>
           )}
