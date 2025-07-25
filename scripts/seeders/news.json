@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Breaking Ground and Breaking Stereotypes: Nadia, the Woman Behind Jakarta's MRT Design",
+    "description": "Nadia stood out the moment she walked onto the construction site — not because of her skills, but because she was the only woman present. Her journey in civil engineering redefined expectations.",
+    "name": "Nadia",
+    "age": 34,
+    "job": "Civil Engineer",
+    "imageSrc": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2025-07-25"
+  },
+  {
+    "title": "Mechanical Engineering with Purpose: Yuliana's Rise in a Male-Dominated Industry",
+    "description": "Yuliana entered her mechanical engineering class and found only 3 other women among 100 students. \"At first, I felt like I didn't belong,\" she said. But she persevered and now leads major projects.",
+    "name": "Yuliana",
+    "age": 29,
+    "job": "Mechanical Engineer",
+    "imageSrc": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2025-07-25"
+  },
+  {
+    "title": "From Stargazing in Yogyakarta to NASA: Raisa's Journey to the Stars",
+    "description": "Raisa was fascinated by the stars ever since her father pointed out Orion's Belt from their rooftop in Yogyakarta. Despite limited science resources growing up, she now works at NASA.",
+    "name": "Raisa",
+    "age": 31,
+    "job": "Astrophysicist",
+    "imageSrc": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "createdAt": "2025-07-25"
+  }
+]

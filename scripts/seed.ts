@@ -1,11 +1,12 @@
 import { courseSeeder } from "./seeders/course-seeder";
+import { newsSeeder } from "./seeders/news-seeder";
 
 // List of all seeder functions
 const seeders = [
   { name: "Courses", fn: courseSeeder },
+  { name: "News", fn: newsSeeder },
   // Add more seeders here as they are created
   // { name: "Users", fn: userSeeder },
-  // { name: "News", fn: newsSeeder },
 ];
 
 async function runAllSeeders(): Promise<void> {

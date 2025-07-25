@@ -7,12 +7,15 @@ import { CourseCard } from "./_components/course-card";
 import { NewsCard } from "./_components/news-card";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
-import { Course } from "../../../../types";
+import { Course, News } from "../../../../types";
 
 export default function HomePage() {
   const [courses, setCourses] = useState<Course[]>([]);
+  const [news, setNews] = useState<News[]>([]);
   const [isLoadingCourses, setIsLoadingCourses] = useState(true);
+  const [isLoadingNews, setIsLoadingNews] = useState(true);
   const [coursesError, setCoursesError] = useState<string | null>(null);
+  const [newsError, setNewsError] = useState<string | null>(null);
   const { user } = useAuth();
   const router = useRouter();
 
@@ -38,10 +41,33 @@ export default function HomePage() {
     }
   };
 
-  // Fetch courses on component mount
+  // Fetch news from API
+  const fetchNews = async () => {
+    try {
+      setIsLoadingNews(true);
+      setNewsError(null);
+
+      const response = await fetch("/api/news");
+      if (!response.ok) {
+        throw new Error("Failed to fetch news");
+      }
+
+      const data = await response.json();
+      // Limit to maximum 3 news articles for the home page
+      setNews(data.news.slice(0, 3));
+    } catch (error) {
+      console.error("Error fetching news:", error);
+      setNewsError("Failed to load news");
+    } finally {
+      setIsLoadingNews(false);
+    }
+  };
+
+  // Fetch courses and news on component mount
   useEffect(() => {
     if (user) {
       fetchCourses();
+      fetchNews();
     }
   }, [user]);
 
@@ -150,30 +176,63 @@ export default function HomePage() {
         <div>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-gray-800">Recent News</h2>
-            <span className="text-sm text-gray-500">Lihat Selengkapnya</span>
+            <button
+              onClick={() => router.push("/news")}
+              className="text-sm text-purple-600 hover:text-purple-700 font-medium"
+            >
+              See All
+            </button>
           </div>
-          <div className="space-y-4">
-            <NewsCard
-              title="Breaking Ground and Breaking Stereotypes: Nadia, the Woman Behind Jakarta's MRT Design"
-              description="Nadia stood out the moment she walked onto the construction site — not because of her skills, but because she was the only wo..."
-              imageSrc="/placeholder.svg?height=120&width=120"
-              imageAlt="Nadia"
-            />
 
-            <NewsCard
-              title="Mechanical Engineering with Purpose: Yuliana's Rise in a Male-Dominated Industry"
-              description="Yuliana entered her mechanical engineering class and found only 3 other women among 100 students. &quot;At first, I felt like I didn't be..."
-              imageSrc="/placeholder.svg?height=120&width=120"
-              imageAlt="Yuliana"
-            />
+          {/* Loading State */}
+          {isLoadingNews && (
+            <div className="space-y-4">
+              {[...Array(3)].map((_, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg p-4 animate-pulse"
+                >
+                  <div className="flex gap-4">
+                    <div className="w-20 h-20 bg-gray-200 rounded-lg flex-shrink-0"></div>
+                    <div className="flex-1">
+                      <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                      <div className="h-3 bg-gray-200 rounded mb-2"></div>
+                      <div className="h-3 bg-gray-200 rounded w-3/4"></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
-            <NewsCard
-              title="From Stargazing in Yogyakarta to NASA: Raisa's Journey to the Stars"
-              description="Raisa was fascinated by the stars ever since her father pointed out Orion's Belt from their rooftop in Yogyakarta. Despite limited scie..."
-              imageSrc="/placeholder.svg?height=120&width=120"
-              imageAlt="Raisa"
-            />
-          </div>
+          {/* Error State */}
+          {newsError && (
+            <div className="text-center py-8">
+              <p className="text-red-600 mb-4">{newsError}</p>
+              <Button onClick={fetchNews} variant="outline" size="sm">
+                Try Again
+              </Button>
+            </div>
+          )}
+
+          {/* News List */}
+          {!isLoadingNews && !newsError && (
+            <div className="space-y-4">
+              {news.map((article) => (
+                <NewsCard key={article.id} news={article} />
+              ))}
+            </div>
+          )}
+
+          {/* Empty State */}
+          {!isLoadingNews && !newsError && news.length === 0 && (
+            <div className="text-center py-8">
+              <p className="text-gray-600 mb-4">No news found</p>
+              <Button onClick={fetchNews} variant="outline" size="sm">
+                Refresh
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </>

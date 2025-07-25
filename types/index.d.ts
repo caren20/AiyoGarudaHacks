@@ -29,5 +29,24 @@ export type CourseFirestore = Omit<Course, "id" | "createdAt"> & {
 
 // Add other interfaces here as the app grows
 // export interface User { ... }
-// export interface News { ... }
 // export interface Profile { ... }
+
+// Base News interface (for API responses and general use)
+export interface News {
+  id: string;
+  title: string;
+  description: string;
+  name: string;
+  age: number;
+  job: string;
+  imageSrc: string;
+  createdAt: string; // ISO string
+}
+
+// News data from JSON (before conversion to Firestore) - no id needed
+export type NewsJSON = Omit<News, "id">;
+
+// News for Firestore (uses Timestamp instead of string)
+export type NewsFirestore = Omit<News, "id" | "createdAt"> & {
+  createdAt: Timestamp;
+};
