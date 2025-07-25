@@ -3,16 +3,34 @@
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
-  const { user, signOut, loading } = useAuth();
+export default function Landing() {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+
+  // Redirect to home page if authenticated
+  useEffect(() => {
+    if (!loading && user) {
+      router.push("/home");
+    }
+  }, [user, loading, router]);
 
   if (loading) {
     return (
       <div className="font-sans flex items-center justify-center min-h-screen">
         <div>Loading...</div>
+      </div>
+    );
+  }
+
+  if (user) {
+    return (
+      <div className="font-sans flex items-center justify-center min-h-screen">
+        <div>Redirecting to dashboard...</div>
       </div>
     );
   }
@@ -29,22 +47,11 @@ export default function Home() {
             height={38}
             priority
           />
-          {user ? (
-            <div className="flex items-center gap-4">
-              <div className="text-sm">
-                Welcome back, {user.displayName || user.email}!
-              </div>
-              <Button variant="outline" onClick={signOut}>
-                Sign Out
-              </Button>
-            </div>
-          ) : (
-            <div className="flex items-center gap-4">
-              <Link href="/login">
-                <Button>Sign In</Button>
-              </Link>
-            </div>
-          )}
+          <div className="flex items-center gap-4">
+            <Link href="/login">
+              <Button>Sign In</Button>
+            </Link>
+          </div>
         </div>
 
         <div className="text-center sm:text-left">
@@ -56,44 +63,25 @@ export default function Home() {
           </p>
         </div>
 
-        {user ? (
-          <div>
-            <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-              <li className="mb-2 tracking-[-.01em]">
-                You are now logged in with Firebase! Your authentication is
-                working.
-              </li>
-              <li className="tracking-[-.01em]">
-                Start building your authenticated app features.
-              </li>
-            </ol>
+        <div>
+          <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
+            <li className="mb-2 tracking-[-.01em]">
+              Sign in with your Google account to get started.
+            </li>
+            <li className="tracking-[-.01em]">
+              Access all the amazing features after authentication.
+            </li>
+          </ol>
 
-            <div className="flex gap-4 items-center flex-col sm:flex-row mt-8">
-              <Button>Get Started</Button>
-              <Button variant="outline">View Profile</Button>
-            </div>
+          <div className="flex gap-4 items-center flex-col sm:flex-row mt-8">
+            <Link href="/login">
+              <Button size="lg">Get Started</Button>
+            </Link>
+            <Button variant="outline" size="lg">
+              Learn More
+            </Button>
           </div>
-        ) : (
-          <div>
-            <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-              <li className="mb-2 tracking-[-.01em]">
-                Sign in with your Google account to get started.
-              </li>
-              <li className="tracking-[-.01em]">
-                Access all the amazing features after authentication.
-              </li>
-            </ol>
-
-            <div className="flex gap-4 items-center flex-col sm:flex-row mt-8">
-              <Link href="/login">
-                <Button size="lg">Get Started</Button>
-              </Link>
-              <Button variant="outline" size="lg">
-                Learn More
-              </Button>
-            </div>
-          </div>
-        )}
+        </div>
       </main>
     </div>
   );

@@ -26,7 +26,7 @@ export function LoginForm({
     try {
       await signInWithGoogle();
       // Redirect to home page after successful login
-      router.push("/");
+      router.push("/home");
     } catch (error) {
       console.error("Error signing in:", error);
     } finally {
@@ -37,7 +37,7 @@ export function LoginForm({
   // If user is already signed in, redirect to home
   useEffect(() => {
     if (user) {
-      router.push("/");
+      router.push("/home");
     }
   }, [user, router]);
 
@@ -54,7 +54,7 @@ export function LoginForm({
           </CardHeader>
           <CardContent>
             <div className="flex flex-col gap-4">
-              <Button onClick={() => router.push("/")} className="w-full">
+              <Button onClick={() => router.push("/home")} className="w-full">
                 Go to Dashboard
               </Button>
               <Button
