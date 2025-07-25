@@ -3,6 +3,7 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
 import {
   HeroSection,
   SDGSection,
@@ -23,16 +24,40 @@ export default function LandingPage() {
 
   if (loading) {
     return (
-      <div className="font-sans flex items-center justify-center min-h-screen">
-        <div>Loading...</div>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <div className="w-40 h-40 bg-black rounded-full flex items-center justify-center mb-6">
+            <Image
+              src="/images/logo-loading.gif"
+              alt="Loading..."
+              width={96}
+              height={96}
+              unoptimized
+            />
+          </div>
+          <div className="text-lg text-gray-600">Loading...</div>
+        </div>
       </div>
     );
   }
 
   if (user) {
     return (
-      <div className="font-sans flex items-center justify-center min-h-screen">
-        <div>Redirecting to dashboard...</div>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <div className="w-40 h-40 bg-black rounded-full flex items-center justify-center mb-6">
+            <Image
+              src="/images/logo-loading.gif"
+              alt="Loading..."
+              width={96}
+              height={96}
+              unoptimized
+            />
+          </div>
+          <div className="text-lg text-gray-600">
+            Redirecting to dashboard...
+          </div>
+        </div>
       </div>
     );
   }

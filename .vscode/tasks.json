@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ESLint Check",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint:check"],
+      "group": "build",
+      "problemMatcher": ["$eslint-stylish"],
+      "isBackground": false
+    }
+  ]
+}

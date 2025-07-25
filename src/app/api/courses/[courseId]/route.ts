@@ -5,10 +5,10 @@ import { Course } from "../../../../../types";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { courseId: string } }
+  { params }: { params: Promise<{ courseId: string }> }
 ) {
   try {
-    const courseId = params.courseId;
+    const { courseId } = await params;
 
     if (!courseId) {
       return NextResponse.json(

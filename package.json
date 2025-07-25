@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:check": "next lint --max-warnings 0",
+    "lint:fix": "next lint --fix",
+    "lint:watch": "next lint --watch",
     "seed": "tsx scripts/seed.ts"
   },
   "dependencies": {

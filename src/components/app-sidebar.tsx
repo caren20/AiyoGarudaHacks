@@ -42,7 +42,7 @@ const data = {
     },
     {
       title: "Profile",
-      url: "#",
+      url: "/profile",
       icon: User,
     },
   ],
